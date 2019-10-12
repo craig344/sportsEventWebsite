@@ -12,7 +12,7 @@
  }
 
   /* Full-width inputs */
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], textarea, input[type=file], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -54,7 +54,6 @@
   .container {
     padding: 16px;
     width: 98%;
-    overflow: auto;
   }
 
   .success {
@@ -85,7 +84,7 @@
     background-color: #3A7CA5;
     width: 20%;
     float: left;
-    height: 70%;
+    height: 90%;
   }
 
   .content {

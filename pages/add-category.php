@@ -1,4 +1,10 @@
 <html lang="en">
+<?php
+session_start();
+if (!(isset($_SESSION["logged-in"]))) {
+    header("location: login.php");
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -18,14 +24,14 @@
     <div class="body">
         <div class="container nav-bar">
             <ul>
+                <li><a href="http://localhost/sportsEventWebsite/pages/admin-pannel.php">Home</a></li>
                 <li><a href="http://localhost/sportsEventWebsite/pages/add-category.php">Add/Delete categories</a></li>
-                <li><a href="">Add Events</a></li>
+                <li><a href="http://localhost/sportsEventWebsite/pages/add-event.php">Add New Event</a></li>
                 <li><a href="">View/edit/delete events</a></li>
             </ul>
         </div>
         <div class="container content">
             <?php
-            session_start();
             if (isset($_SESSION["message"])) { ?>
                 <div class="container <?= $_SESSION["msg_class"] ?>"><?= $_SESSION["message"] ?></div>
             <?php
@@ -44,10 +50,10 @@
                 $mysqli = new mysqli("localhost", "root", "", "sports") or die(mysqli_error($mysqli));
                 $sql = "SELECT * FROM event_categories";
                 $result = $mysqli->query($sql) or die($mysqli->error);
-                while($row = $result->fetch_assoc()){?>
+                while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?=$row["name"]?></td>
-                        <td><a href="http://localhost/sportsEventWebsite/pages/process.php?delete-category=<?=$row["id"]?>"><button class="logout-btn">Delete</button></a></td>
+                        <td><?= $row["name"] ?></td>
+                        <td><a href="http://localhost/sportsEventWebsite/pages/process.php?delete-category=<?= $row["id"] ?>"><button class="logout-btn">Delete</button></a></td>
                     </tr>
                 <?php
                 }
