@@ -35,7 +35,7 @@ if (isset($_POST["add-category"])) {
 }
 
 if (isset($_GET["delete-category"])) {
-    $id = $_GET["delete"];
+    $id = $_GET["delete-category"];
     $sql = "DELETE FROM event_categories WHERE id=$id";
     $mysqli->query($sql) or die($mysqli->error);
     $_SESSION["message"] = "Category Successfully deleted!";
@@ -87,4 +87,49 @@ if (isset($_POST["add-event"])) {
     }
     $_SESSION["message"] = $message;
     header("location: add-event.php");
+}
+
+if (isset($_GET["delete-event"])) {
+    $id = $_GET["delete-event"];
+    $sql = "DELETE FROM event WHERE id=$id";
+    $mysqli->query($sql) or die($mysqli->error);
+    $_SESSION["message"] = "Event Successfully deleted!";
+    $_SESSION["msg_class"] = "danger";
+    header("location: view-events.php");
+}
+
+if (isset($_GET["add-featured"])) {
+    $id = $_GET["add-featured"];
+    $sql = "UPDATE `event` SET `featured` = 1 WHERE `event`.`id` = $id";
+    $mysqli->query($sql) or die($mysqli->error);
+    $_SESSION["message"] = "Event Successfully Added to Featured Events!";
+    $_SESSION["msg_class"] = "success";
+    header("location: view-events.php");
+}
+
+if (isset($_GET["remove-featured"])) {
+    $id = $_GET["remove-featured"];
+    $sql = "UPDATE `event` SET `featured` = 0 WHERE `event`.`id` = $id";
+    $mysqli->query($sql) or die($mysqli->error);
+    $_SESSION["message"] = "Event Successfully Removed from Featured Events!";
+    $_SESSION["msg_class"] = "success";
+    header("location: view-events.php");
+}
+
+if (isset($_GET["remove-active"])) {
+    $id = $_GET["remove-active"];
+    $sql = "UPDATE `event` SET `active` = 0 WHERE `event`.`id` = $id";
+    $mysqli->query($sql) or die($mysqli->error);
+    $_SESSION["message"] = "Event Successfully Removed from Active Events!";
+    $_SESSION["msg_class"] = "success";
+    header("location: view-events.php");
+}
+
+if (isset($_GET["add-active"])) {
+    $id = $_GET["add-active"];
+    $sql = "UPDATE `event` SET `active` = 1 WHERE `event`.`id` = $id";
+    $mysqli->query($sql) or die($mysqli->error);
+    $_SESSION["message"] = "Event Successfully Added to Active Events!";
+    $_SESSION["msg_class"] = "success";
+    header("location: view-events.php");
 }

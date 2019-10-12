@@ -1,4 +1,10 @@
 <html lang="en">
+<?php
+session_start();
+if (!(isset($_SESSION["logged-in"]))) {
+    header("location: login.php");
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +32,6 @@
         </div>
         <div class="container content">
             <?php
-            session_start();
             if (isset($_SESSION["message"])) { ?>
                 <div class="container <?= $_SESSION["msg_class"] ?>"><?= $_SESSION["message"] ?></div>
             <?php

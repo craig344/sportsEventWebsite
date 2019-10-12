@@ -31,6 +31,14 @@ if (!(isset($_SESSION["logged-in"]))) {
             </ul>
         </div>
         <div class="container content">
+            <?php
+            if (isset($_SESSION["message"])) { ?>
+                <div class="container <?= $_SESSION["msg_class"] ?>"><?= $_SESSION["message"] ?></div>
+            <?php
+            }
+            unset($_SESSION["msg_class"]);
+            unset($_SESSION["message"]);
+            ?>
             <h2>View/Delete Events</h2>
             <?php
             $mysqli = new mysqli("localhost", "root", "", "sports") or die(mysqli_error($mysqli));
@@ -59,14 +67,14 @@ if (!(isset($_SESSION["logged-in"]))) {
                     </tr>
                     <tr>
                         <td colspan="3">
-                        <a href="http://localhost/sportsEventWebsite/pages/process.php?delete-event=<?= $row["id"] ?>"><button class="logout-btn">Delete</button></a>
-                        <a href="http://localhost/sportsEventWebsite/pages/process.php?<?php
-                                if ($row["active"] == 0) {
-                                    echo "add-active";
-                                } else {
-                                    echo "remove-active";
-                                }
-                                ?>=<?= $row["id"] ?>">
+                            <a href="http://localhost/sportsEventWebsite/pages/process.php?delete-event=<?= $row["id"] ?>"><button class="logout-btn">Delete</button></a>
+                            <a href="http://localhost/sportsEventWebsite/pages/process.php?<?php
+                                                                                                if ($row["active"] == 0) {
+                                                                                                    echo "add-active";
+                                                                                                } else {
+                                                                                                    echo "remove-active";
+                                                                                                }
+                                                                                                ?>=<?= $row["id"] ?>">
                                 <button class="normal-btn">
                                     <?php
                                         if ($row["active"] == 0) {
@@ -78,12 +86,12 @@ if (!(isset($_SESSION["logged-in"]))) {
                                 </button>
                             </a>
                             <a href="http://localhost/sportsEventWebsite/pages/process.php?<?php
-                                if ($row["featured"] == 0) {
-                                    echo "add-featured";
-                                } else {
-                                    echo "remove-featured";
-                                }
-                                ?>=<?= $row["id"] ?>">
+                                                                                                if ($row["featured"] == 0) {
+                                                                                                    echo "add-featured";
+                                                                                                } else {
+                                                                                                    echo "remove-featured";
+                                                                                                }
+                                                                                                ?>=<?= $row["id"] ?>">
                                 <button class="login-btn">
                                     <?php
                                         if ($row["featured"] == 0) {
@@ -94,7 +102,7 @@ if (!(isset($_SESSION["logged-in"]))) {
                                         ?>
                                 </button>
                             </a>
-                        <a href="http://localhost/sportsEventWebsite/pages/process.php?edit-event=<?= $row["id"] ?>"><button class="normal-btn">Edit</button></a>
+                            <a href="http://localhost/sportsEventWebsite/pages/process.php?edit-event=<?= $row["id"] ?>"><button class="normal-btn">Edit</button></a>
                         </td>
                     </tr>
                 </table>
