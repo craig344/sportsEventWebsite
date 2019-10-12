@@ -57,23 +57,40 @@
     overflow: auto;
   }
 
-  .header {
-    background-color: #16425B;
-    height: 11%;
+  .success {
+    background-color: #4CAF50;
+    color: white;
   }
 
-  .header a, ul a{
+  .danger {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .header {
+    background-color: #16425B;
+    height: 13%;
+  }
+
+  .header a, .nav-bar a{
     color: white;
   }
 
   .body{
     background-color: #D9DCD6;
+    overflow: auto;
   }
 
   .nav-bar {
     background-color: #3A7CA5;
     width: 20%;
     float: left;
+    height: 70%;
+  }
+
+  .content {
+    float: right;
+    width: 75%;
   }
 
   .footer{
@@ -83,6 +100,24 @@
 
   ul {
     list-style: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(odd){background-color: white}
+  tr:nth-child(even){background-color: #f1f1f1}
+  
+  th {
+    background-color: #3A7CA5;
+    color: white;
   }
   
   /* Change styles for extra small screens */
