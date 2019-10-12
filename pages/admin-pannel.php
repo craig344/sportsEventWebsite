@@ -27,7 +27,7 @@ if (!(isset($_SESSION["logged-in"]))) {
                 <li><a href="http://localhost/sportsEventWebsite/pages/admin-pannel.php">Home</a></li>
                 <li><a href="http://localhost/sportsEventWebsite/pages/add-category.php">Add/Delete categories</a></li>
                 <li><a href="http://localhost/sportsEventWebsite/pages/add-event.php">Add New Event</a></li>
-                <li><a href="">View/edit/delete events</a></li>
+                <li><a href="http://localhost/sportsEventWebsite/pages/view-events.php">View/edit/delete Events</a></li>
             </ul>
         </div>
         <div class="container content">

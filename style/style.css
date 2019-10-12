@@ -11,6 +11,11 @@
    float: left;
  }
 
+ img {
+   width: 100%;
+   height: auto;
+ }
+
   /* Full-width inputs */
   input[type=text], input[type=password], textarea, input[type=file], select {
     width: 100%;
@@ -39,6 +44,12 @@
     float: right;
     background-color: #f44336;
   }
+
+  .normal-btn{
+    float: right;
+    background-color: #3A7CA5;
+  }
+  
   /* Add a hover effect for buttons */
   button:hover {
     opacity: 0.8;
@@ -68,7 +79,8 @@
 
   .header {
     background-color: #16425B;
-    height: 13%;
+    height: 12%;
+    overflow: hidden;
   }
 
   .header a, .nav-bar a{
@@ -104,6 +116,7 @@
   table {
     border-collapse: collapse;
     width: 100%;
+    margin-top: 20px;
   }
   
   th, td {
