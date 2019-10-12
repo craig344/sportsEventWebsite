@@ -1,4 +1,16 @@
-  
+ 
+ body{
+   font-family: 'Courier New', Courier, monospace;
+ }
+
+ a {
+   text-decoration: none;
+ }
+
+ h1{
+   float: left;
+ }
+
   /* Full-width inputs */
   input[type=text], input[type=password] {
     width: 100%;
@@ -17,19 +29,19 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+  }
+
+  .login-btn{
+    float: right;
   }
   
+  .logout-btn{
+    float: right;
+    background-color: #f44336;
+  }
   /* Add a hover effect for buttons */
   button:hover {
     opacity: 0.8;
-  }
-  
-  /* Extra style for the cancel button (red) */
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
   }
   
   #form{
@@ -41,12 +53,36 @@
   /* Add padding to containers */
   .container {
     padding: 16px;
+    width: 98%;
+    overflow: auto;
   }
-  
-  /* The "Forgot password" text */
-  span.psw {
-    float: right;
-    padding-top: 16px;
+
+  .header {
+    background-color: #16425B;
+    height: 11%;
+  }
+
+  .header a, ul a{
+    color: white;
+  }
+
+  .body{
+    background-color: #D9DCD6;
+  }
+
+  .nav-bar {
+    background-color: #3A7CA5;
+    width: 20%;
+    float: left;
+  }
+
+  .footer{
+    background-color: #16425B;
+    height: 10%;
+  }
+
+  ul {
+    list-style: none;
   }
   
   /* Change styles for extra small screens */

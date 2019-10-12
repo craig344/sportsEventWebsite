@@ -1,9 +1,9 @@
 <?php
+    session_start();
 
 $mysqli = new mysqli("localhost", "root", "", "sports") or die(mysqli_error($mysqli));
 
 if(isset($_POST["login"])){
-    session_start();
     $uname = $_POST["uname"];
     $passwd = $_POST["psw"];
     $sql = "SELECT * FROM user WHERE id='$uname' AND password='$passwd'";
@@ -24,4 +24,3 @@ if(isset($_POST["log-out"])){
     session_destroy();
     header("location: ../");
 }
-?>
