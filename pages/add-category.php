@@ -53,18 +53,40 @@ if (!(isset($_SESSION["logged-in"]))) {
                 while ($row = $result->fetch_assoc()) { ?>
                     <tr>
                         <td><?= $row["name"] ?></td>
-                        <td><a href="http://localhost/sportsEventWebsite/pages/process.php?delete-category=<?= $row["id"] ?>"><button class="logout-btn">Delete</button></a></td>
+                        <td>
+                            <a href="http://localhost/sportsEventWebsite/pages/process.php?delete-category=<?= $row["id"] ?>"><button class="logout-btn">Delete</button></a>
+                            <a href="http://localhost/sportsEventWebsite/pages/add-category.php?edit-category=<?= $row["id"] ?>"><button class="login-btn">Edit</button></a>
+                        </td>
                     </tr>
                 <?php
                 }
                 ?>
             </table>
-            <h2>Add a category</h2>
-            <form action="process.php" method="post">
-                <label for="cname"><b>Category Name</b></label>
-                <input type="text" placeholder="Enter Category Name" name="cname" required>
-                <button type="submit" name="add-category">Add</button>
-            </form>
+            <?php
+            if (isset($_GET["edit-category"])) {
+                $id = $_GET["edit-category"];
+                $sql = "SELECT * FROM event_categories WHERE id=$id";
+                $result = $mysqli->query($sql) or die($mysqli->error);
+                $row = $result->fetch_assoc();
+                ?>
+                <h2>Edit Category: <?= $row["name"]; ?></h2>
+                <form action="process.php" method="post">
+                    <input type="hidden" name="id" value="<?= $id ?>">
+                    <label for="cname"><b>Category Name:</b></label>
+                    <input type="text" placeholder="Enter Category Name" name="cname" value="<?= $row["name"] ?>" required>
+                    <button type="submit" name="edit-category">Save</button>
+                </form>
+            <?php
+            } else { ?>
+                <h2>Add a category</h2>
+                <form action="process.php" method="post">
+                    <label for="cname"><b>Category Name:</b></label>
+                    <input type="text" placeholder="Enter Category Name" name="cname" required>
+                    <button type="submit" name="add-category">Add</button>
+                </form>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <div class="footer">

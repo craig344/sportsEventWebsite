@@ -43,6 +43,16 @@ if (isset($_GET["delete-category"])) {
     header("location: add-category.php");
 }
 
+if (isset($_POST["edit-category"])) {
+    $id = $_POST["id"];
+    $cname = $_POST["cname"];
+    $sql = "UPDATE `event_categories` SET `name` = '$cname' WHERE `event_categories`.`id` = $id";;
+    $mysqli->query($sql) or die($mysqli->error);
+    $_SESSION["message"] = "Category Successfully added!";
+    $_SESSION["msg_class"] = "success";
+    header("location: add-category.php");
+}
+
 if (isset($_POST["add-event"])) {
     $name = $_POST["ename"];
     $description = $_POST["description"];
@@ -183,3 +193,5 @@ if (isset($_POST["edit-event"])) {
     $_SESSION["message"] = $message;
     header("location: view-events.php");
 }
+
+
