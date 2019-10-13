@@ -12,6 +12,7 @@ if (!(isset($_SESSION["logged-in"]))) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sports Events (Admin pannel)</title>
     <link rel="stylesheet" href="../style/style.css">
+    <script src="../script/validation.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@ if (!(isset($_SESSION["logged-in"]))) {
                 <label for="description"><b>Event Description:</b></label>
                 <textarea name="description" placeholder="Write something.." style="height:100px" required></textarea>
                 <label for="image"><b>Event Image:</b></label>
-                <input type="file" name="image" id="image" required>
+                <input type="file" name="image" id="image" onchange="validate_fileupload(this.value);" required>
                 <label for="Category"><b>Event Category:</b></label>
                 <select name="category">
                     <?php
