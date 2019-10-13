@@ -42,10 +42,9 @@ if (!(isset($_SESSION["logged-in"]))) {
             <h2>View/Delete Events</h2>
             <?php
             $mysqli = new mysqli("localhost", "root", "", "sports") or die(mysqli_error($mysqli));
-            $sql = "SELECT * FROM event";
+            $sql = "SELECT * FROM event ORDER BY date DESC";
             $result = $mysqli->query($sql) or die($mysqli->error);
-            while ($row = $result->fetch_assoc()) { ?>
-                <?php
+            while ($row = $result->fetch_assoc()) {
                     $id = $row["category_id"];
                     $sql1 = "SELECT * FROM event_categories WHERE id=$id";
                     $result1 = $mysqli->query($sql1) or die($mysqli->error);

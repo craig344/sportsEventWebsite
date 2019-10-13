@@ -25,8 +25,7 @@ $result = $mysqli->query($sql) or die($mysqli->error);
         <div class="container nav-bar">
             <ul>
                 <li><a href="http://localhost/sportsEventWebsite/">Home</a></li>
-                <li><a href="#">View Events</a></li>
-                <li><a href="#">Search</a></li>
+                <li><a href="http://localhost/sportsEventWebsite/pages/event-list.php">View Events</a></li>
             </ul>
         </div>
         <div class="content">
@@ -39,7 +38,7 @@ $result = $mysqli->query($sql) or die($mysqli->error);
                         $count = 1;
                         while ($row = $result->fetch_assoc()) { ?>
                         <!-- Full-width images with number and caption text -->
-                        <div class="mySlides fade">
+                        <div class="mySlides fade" onclick="window.location.href = 'http://localhost/sportsEventWebsite/pages/event-details.php?view-id=<?= $row["id"] ?>';">
                             <div class="numbertext"><?= $count++ ?> / <?= $total ?></div>
                             <img src="images/<?= $row["image"]; ?>" style="width:100%">
                             <div class="text"><h1><?= $row["name"]; ?></h1></div>

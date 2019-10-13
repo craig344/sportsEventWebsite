@@ -10,6 +10,15 @@
 
 <body>
     <div class="container" id="form">
+        <?php
+        session_start();
+        if (isset($_SESSION["message"])) { ?>
+            <div class="container <?= $_SESSION["msg_class"] ?>"><?= $_SESSION["message"] ?></div>
+        <?php
+        }
+        unset($_SESSION["msg_class"]);
+        unset($_SESSION["message"]);
+        ?>
         <form action="process.php" method="post">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
