@@ -16,6 +16,11 @@
    height: auto;
  }
 
+ .small-img {
+   width: 10%;
+   height: auto;
+ }
+
   /* Full-width inputs */
   input[type=text], input[type=password], textarea, input[type=file], select {
     width: 100%;

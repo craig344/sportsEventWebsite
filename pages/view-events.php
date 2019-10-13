@@ -102,14 +102,13 @@ if (!(isset($_SESSION["logged-in"]))) {
                                         ?>
                                 </button>
                             </a>
-                            <a href="http://localhost/sportsEventWebsite/pages/process.php?edit-event=<?= $row["id"] ?>"><button class="normal-btn">Edit</button></a>
+                            <a href="http://localhost/sportsEventWebsite/pages/edit-event.php?event=<?= $row["id"] ?>"><button class="normal-btn">Edit</button></a>
                         </td>
                     </tr>
                 </table>
             <?php
             }
             ?>
-
         </div>
     </div>
     <div class="footer">

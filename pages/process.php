@@ -48,39 +48,39 @@ if (isset($_POST["add-event"])) {
     $description = $_POST["description"];
     $target_dir = "../images/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $uploadOK = true;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $uploadOK = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $category_id = $_POST["category"];
     $active = $_POST["type"];
     $date = date("Y/m/d");
     $sql = "INSERT INTO `event` (`id`, `name`, `description`, `date`, `image`, `category_id`, `active`) VALUES (NULL, '$name', '$description', '$date', '$target_file', $category_id, $active)";
 
     $check = getimagesize($_FILES["image"]["tmp_name"]);
-    if ($check == false) {
+    if ($check == 0) {
         $message = "File is not an image.";
-        $uploadOk = false;
+        $uploadOk = 0;
     }
     if (file_exists($target_file)) {
         $message = "Sorry, file already exists.";
-        $uploadOk = false;
+        $uploadOk = 0;
     }
     if ($_FILES["image"]["size"] > 500000) {
         $message = "Sorry, your file is too large.";
-        $uploadOk = false;
+        $uploadOk = 0;
     }
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = false;
+        $uploadOk = 0;
     }
-    if($uploadOK){
+    if ($uploadOK) {
         if (!(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file))) {
             $message = "Sorry, there was an error uploading your file.";
-            $uploadOk = false;
+            $uploadOk = 0;
         }
     }
-    if(!$uploadOK){
+    if (!$uploadOK) {
         $_SESSION["msg_class"] = "danger";
-    }else{
+    } else {
         $_SESSION["msg_class"] = "success";
         $mysqli->query($sql) or die($mysqli->error);
         $message = "Event Successfully added";
@@ -131,5 +131,55 @@ if (isset($_GET["add-active"])) {
     $mysqli->query($sql) or die($mysqli->error);
     $_SESSION["message"] = "Event Successfully Added to Active Events!";
     $_SESSION["msg_class"] = "success";
+    header("location: view-events.php");
+}
+
+if (isset($_POST["edit-event"])) {
+    $id = $_POST["edit-id"];
+    $name = $_POST["ename"];
+    $description = $_POST["description"];
+    $category_id = $_POST["category"];
+    $active = $_POST["type"];
+    $uploadOK = 1;
+
+    if ($_FILES["image"]["tmp_name"] == "") {
+        $sql = "UPDATE `event` SET `name` = '$name', `description` = '$description', `category_id` = $category_id, `active` = $active WHERE `event`.`id` = $id";
+    } else {
+        $target_dir = "../images/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if ($check == 0) {
+            $message = "File is not an image.";
+            $uploadOk = 0;
+        }
+        if (file_exists($target_file)) {
+            $message = "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        if ($_FILES["image"]["size"] > 500000) {
+            $message = "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        if ($uploadOK) {
+            if (!(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file))) {
+                $message = "Sorry, there was an error uploading your file.";
+                $uploadOk = 0;
+            }
+        }
+        $sql = "UPDATE `event` SET `name` = '$name', `description` = '$description', `image` = '$target_file', `category_id` = $category_id, `active` = $active WHERE `event`.`id` = $id";
+    }
+    if (!$uploadOK) {
+        $_SESSION["msg_class"] = "danger";
+    } else {
+        $_SESSION["msg_class"] = "success";
+        $mysqli->query($sql) or die($mysqli->error);
+        $message = "Event Successfully Updated";
+    }
+    $_SESSION["message"] = $message;
     header("location: view-events.php");
 }
